@@ -117,7 +117,7 @@ def find_object_id_by_name_in_resource_pack(game_project_dir_path, object_name):
             scene_id = key_value['key']['uuid']
             scene_data = get_scene_data(game_project_dir_path, scene_id)
             scene_nodes = scene_data['nodes']
-            nodes_list.append(nodes_list)
+            nodes_list.append(scene_nodes)
 
     if 'characters' in resource_pack_data['characters']['map']:
         for key_value in resource_pack_data['characters']['map']:
