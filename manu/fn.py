@@ -93,6 +93,19 @@ def find_nodes_ids_by_timeline_script_id(nodes, timeline_script_id):
     return nodes_ids
 
 
+def find_in_resource_pack_nodes_ids_by_timeline_script_id(game_project_dir_path, timeline_script_id):
+    nodes_ids = []
+    nodes_list = get_all_nodes_collections_list(game_project_dir_path)
+    for nodes in nodes_list:
+        for node in nodes:
+            obj = node['object3D']
+            if 'timeline' in obj:
+                timeline_component = obj['timeline']
+                if timeline_script_id == timeline_component['timelineId']['uuid']:
+                    nodes_ids.append(obj['id']['uuid'])
+    return nodes_ids
+
+
 def count_objects_by_name(nodes, object_name):
     cnt = 0
     for node in nodes:
