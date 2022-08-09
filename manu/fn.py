@@ -87,6 +87,13 @@ def get_scene_data(game_project_dir_path, scene_id):
     return scene_data
 
 
+def get_script_data(game_project_dir_path, script_id):
+    script_file_path = os.path.join(game_project_dir_path, 'scripts/{0}.json'.format(script_id))
+    with open(script_file_path, 'r') as script_file:
+        script_data = json.load(script_file)
+    return script_data
+
+
 def get_animation_data(game_project_dir_path, animation_id):
     animation_file_path = os.path.join(game_project_dir_path, 'animations/{0}.json'.format(animation_id))
     with open(animation_file_path, 'r') as animation_file:
