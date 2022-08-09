@@ -1,5 +1,4 @@
-from . import get_asset_data
-from .get_asset_data import *
+from .read_json_file_data import *
 
 KEY_TO_DIR = {
     'scenes': 'scenes',
@@ -63,13 +62,6 @@ def make_asset_key_to_set_dict():
         'stateMachines': set()
     }
     return asset_key_to_set_dict
-
-
-def get_resource_pack_data(game_project_dir_path):
-    resource_pack_file_path = os.path.join(game_project_dir_path, 'resource-pack.json')
-    with open(resource_pack_file_path, 'r') as resource_pack_file:
-        resource_pack_data = json.load(resource_pack_file)
-    return resource_pack_data
 
 
 def get_first_scene_id_from_resource_pack_data(resource_pack_data):
