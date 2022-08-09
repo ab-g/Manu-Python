@@ -87,6 +87,13 @@ def get_scene_data(game_project_dir_path, scene_id):
     return scene_data
 
 
+def get_animation_data(game_project_dir_path, animation_id):
+    animation_file_path = os.path.join(game_project_dir_path, 'animations/{0}.json'.format(animation_id))
+    with open(animation_file_path, 'r') as animation_file:
+        animation_data = json.load(animation_file)
+    return animation_data
+
+
 def count_objects_by_name(nodes, object_name):
     cnt = 0
     for node in nodes:
