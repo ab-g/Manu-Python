@@ -149,6 +149,19 @@ def get_human_readable_path_to_node_by_id(nodes, node_id):
     return path_to_node
 
 
+def get_inserted_timelines_ids_from_animation_data(animation_data):
+    inserted_timelines_ids = []
+    if 'tracks' not in animation_data:
+        return inserted_timelines_ids
+    for track in animation_data['tracks']:
+        if track['@class'] == 'TimeLineTrack' and 'clips' in track:
+            for clip in track['clips']:
+                if clip['@class'] == 'TimeLineClip':
+                    inserted_timeline_id = get_target_id_from_binding_link(clip['bindinglink'])
+                    inserted_timelines_ids.append(inserted_timeline_id)
+    return inserted_timelines_ids
+
+
 def find_camera_follow_script_id(scripts):
     for script in scripts:
         if script['@class'] == 'CameraFollowScript':
