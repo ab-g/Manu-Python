@@ -42,6 +42,29 @@ DIR_TO_KEY = {
 }
 
 
+def make_asset_key_to_set_of_ids_dict():
+    asset_key_to_set_of_ids_dict = {
+        'scenes': set(),
+        'scripts': set(),
+        'cameras': set(),
+        'meshes': set(),
+        'skinControllers': set(),
+        'materials': set(),
+        'textures2d': set(),
+        'texturesCube': set(),
+        'images': set(),
+        'lights': set(),
+        'animations': set(),
+        'audioSources': set(),
+        'soundSamples': set(),
+        'rigidBodies': set(),
+        'colliders': set(),
+        'characters': set(),
+        'stateMachines': set()
+    }
+    return asset_key_to_set_of_ids_dict
+
+
 def get_resource_pack_data(game_project_dir_path):
     resource_pack_file_path = os.path.join(game_project_dir_path, 'resource-pack.json')
     with open(resource_pack_file_path, 'r') as resource_pack_file:

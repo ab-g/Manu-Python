@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-git add . && git commit -m "Add constants KEY_TO_DIR and DIR_TO_KEY" && git tag v0.9.0 -m '0.9.0 tag'
+git add . && git commit -m "Add function make_asset_key_to_set_of_ids_dict" && git tag v0.10.0 -m '0.10.0 tag'
 git push --force --tags origin master:master
 rm -rf dist && python3 setup.py bdist_wheel && twine upload -r testpypi dist/*
 pip3 uninstall -y manu
