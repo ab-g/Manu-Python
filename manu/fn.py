@@ -178,6 +178,32 @@ def find_timelines_scripts_ids_who_contains_animation_with_id(game_project_dir_p
     return timelines_scripts_ids
 
 
+def find_timelines_nodes_ids_who_inserts_timeline(game_project_dir, scene_id, timeline_node_id):
+    timelines_nodes_ids = []
+
+    scene_data = get_scene_data(game_project_dir, scene_id)
+    scene_nodes = scene_data['nodes']
+
+    default_character_data = get_character_data(game_project_dir)
+    character_nodes = default_character_data['body']
+
+    animations_ids_who_contains_timeline = get_animations_ids_who_contains_timeline(game_project_dir, timeline_node_id)
+    for animation_id in animations_ids_who_contains_timeline:
+
+        timelines_scripts_ids = find_timelines_scripts_ids_who_contains_animation_with_id(game_project_dir, scene_id, animation_id)
+        for timeline_script_id in timelines_scripts_ids:
+
+            nodes_ids = find_nodes_ids_by_timeline_script_id(scene_nodes, timeline_script_id)
+            for node_id in nodes_ids:
+                timelines_nodes_ids.append(node_id)
+
+            nodes_ids = find_nodes_ids_by_timeline_script_id(character_nodes, timeline_script_id)
+            for node_id in nodes_ids:
+                timelines_nodes_ids.append(node_id)
+
+    return timelines_nodes_ids
+
+
 def find_camera_follow_script_id(scripts):
     for script in scripts:
         if script['@class'] == 'CameraFollowScript':
