@@ -16,6 +16,17 @@ def get_scene_data(game_project_dir_path, scene_id):
     return scene_data
 
 
+def get_all_scenes(game_project_dir_path):
+    resource_pack_data = get_resource_pack_data(game_project_dir_path)
+    scenes = []
+    if 'scenes' in resource_pack_data:
+        for key_value in resource_pack_data['scenes']['map']:
+            scene_id = key_value['key']['uuid']
+            scene_data = get_scene_data(game_project_dir_path, scene_id)
+            scenes.append(scene_data)
+    return scenes
+
+
 def get_script_data(game_project_dir_path, script_id):
     script_file_path = os.path.join(game_project_dir_path, 'scripts/{0}.json'.format(script_id))
     with open(script_file_path, 'r') as script_file:
