@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 git add . && git commit -m "Refactoring" \
-  && git tag v0.26.4 -m '0.26.4 tag'
+  && git tag v0.26.5 -m '0.26.5 tag'
 git push --force --tags origin master:master
 rm -rf dist && python3 setup.py bdist_wheel && twine upload -r testpypi dist/*
 pip3 uninstall -y manu

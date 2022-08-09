@@ -23,7 +23,10 @@ def get_animation_data(game_project_dir_path, animation_id):
     return animation_data
 
 
-def get_character_data(game_project_dir_path, character_id):
+def get_character_data(game_project_dir_path, character_id=None):
+    if character_id is None:
+        resource_pack_data = get_resource_pack_data(game_project_dir_path)
+        character_id = resource_pack_data['defaultCharacterId']['uuid']
     character_file_path = os.path.join(game_project_dir_path, 'characters/{0}.json'.format(character_id))
     with open(character_file_path, 'r') as character_file:
         character_data = json.load(character_file)

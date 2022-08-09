@@ -193,12 +193,6 @@ def find_camera_follow_script_id(scripts):
     return '00000000-0000-0000-0000-000000000000'
 
 
-def get_character_data(game_project_dir_path):
-    resource_pack_data = get_resource_pack_data(game_project_dir_path)
-    character_id = resource_pack_data['defaultCharacterId']['uuid']
-    return get_character_data(game_project_dir_path, character_id)
-
-
 def get_state_data_by_id_from_state_machine_data(state_machine_data, state_id):
     for state_machine_state in state_machine_data['states']:
         if state_machine_state['id']['uuid'] == state_id:
