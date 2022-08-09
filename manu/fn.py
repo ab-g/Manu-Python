@@ -1,5 +1,7 @@
 from .read_json_file_data import *
 
+ID_EMPTY = '00000000-0000-0000-0000-000000000000'
+
 KEY_TO_DIR = {
     'scenes': 'scenes',
     'scripts': 'scripts',
@@ -127,12 +129,11 @@ def find_object_id_by_name_in_resource_pack(game_project_dir_path, object_name):
             nodes_list.append(character_nodes)
 
     for nodes in nodes_list:
-        for node in nodes:
-            obj = node['object3D']
-            if obj['name'] == object_name:
-                return obj['id']['uuid']
+        node_id = find_object_id_by_name(nodes, object_name)
+        if node_id != ID_EMPTY:
+            return node_id
 
-    return '00000000-0000-0000-0000-000000000000'
+    return ID_EMPTY
 
 
 def get_human_readable_path_to_node_by_id(nodes, node_id):
