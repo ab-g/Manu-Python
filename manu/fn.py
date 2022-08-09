@@ -112,14 +112,14 @@ def find_object_id_by_name_in_resource_pack(game_project_dir_path, object_name):
     resource_pack_data = get_resource_pack_data(game_project_dir_path)
     nodes_list = []
 
-    if 'scenes' in resource_pack_data['scenes']['map']:
+    if 'scenes' in resource_pack_data:
         for key_value in resource_pack_data['scenes']['map']:
             scene_id = key_value['key']['uuid']
             scene_data = get_scene_data(game_project_dir_path, scene_id)
             scene_nodes = scene_data['nodes']
             nodes_list.append(scene_nodes)
 
-    if 'characters' in resource_pack_data['characters']['map']:
+    if 'characters' in resource_pack_data:
         for key_value in resource_pack_data['characters']['map']:
             character_id = key_value['key']['uuid']
             character_data = get_character_data(game_project_dir_path, character_id)
