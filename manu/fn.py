@@ -119,6 +119,36 @@ def find_object_id_by_name(nodes, object_name):
     return '00000000-0000-0000-0000-000000000000'
 
 
+def get_human_readable_path_to_node_by_id(nodes, node_id):
+    path_to_node = None
+    path_to_node_stack = []
+
+    current_node_id = node_id
+
+    node = find_node_by_id(nodes, current_node_id)
+    path_to_node_stack.append(node['object3D']['name'])
+
+    while current_node_id:
+        found_node_id = None
+        for parent_node in nodes:
+            if 'children' in parent_node and current_node_id in parent_node['children']:
+                parent_object = parent_node['object3D']
+                found_node_id = parent_object['id']['uuid']
+                path_to_node_stack.append(parent_object['name'])
+                break
+        current_node_id = found_node_id
+
+    if path_to_node_stack:
+        path_to_node = ''
+
+    while path_to_node_stack:
+        path_to_node += path_to_node_stack.pop()
+        if len(path_to_node_stack) > 0:
+            path_to_node += ' / '
+
+    return path_to_node
+
+
 def find_camera_follow_script_id(scripts):
     for script in scripts:
         if script['@class'] == 'CameraFollowScript':
