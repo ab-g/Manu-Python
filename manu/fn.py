@@ -176,3 +176,9 @@ def get_file_path_to_attachment_by_asset_path(path_to_asset):
     with open(path_to_asset, 'r') as asset_file:
         asset_data = json.load(asset_file)
     return asset_data['filePath']
+
+
+def get_target_id_from_binding_link(binding_link_data):
+    if 'targetId' in binding_link_data:
+        return binding_link_data['targetId']['uuid']
+    return None
