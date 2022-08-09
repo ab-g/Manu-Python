@@ -42,8 +42,8 @@ DIR_TO_KEY = {
 }
 
 
-def make_asset_key_to_set_of_ids_dict():
-    asset_key_to_set_of_ids_dict = {
+def make_asset_key_to_set_dict():
+    asset_key_to_set_dict = {
         'scenes': set(),
         'scripts': set(),
         'cameras': set(),
@@ -62,7 +62,7 @@ def make_asset_key_to_set_of_ids_dict():
         'characters': set(),
         'stateMachines': set()
     }
-    return asset_key_to_set_of_ids_dict
+    return asset_key_to_set_dict
 
 
 def get_resource_pack_data(game_project_dir_path):
