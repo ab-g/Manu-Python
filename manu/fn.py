@@ -182,6 +182,20 @@ def get_animations_ids_who_contains_timeline(game_project_dir, timeline_node_id)
     return animations_ids_who_contains_timeline
 
 
+def find_timelines_scripts_ids_who_contains_animation_with_id(game_project_dir_path, scene_id, animation_id):
+    timelines_scripts_ids = []
+    scene_data = get_scene_data(game_project_dir_path, scene_id)
+    for timeline_script in scene_data['scriptSystem']['scripts']:
+        if timeline_script['@class'] == 'TimeLineScript':
+            timeline_script_id = timeline_script['id']['uuid']
+            timeline_script_data = get_script_data(game_project_dir_path, timeline_script_id)
+            for animation_script in timeline_script_data['scripts']['list']:
+                animation_resource_id = animation_script['animation']['uuid']
+                if animation_resource_id == animation_id:
+                    timelines_scripts_ids.append(timeline_script_id)
+    return timelines_scripts_ids
+
+
 def find_camera_follow_script_id(scripts):
     for script in scripts:
         if script['@class'] == 'CameraFollowScript':
