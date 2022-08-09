@@ -94,6 +94,14 @@ def get_animation_data(game_project_dir_path, animation_id):
     return animation_data
 
 
+def find_node_by_id(nodes, node_id):
+    for node in nodes:
+        obj = node['object3D']
+        if obj['id']['uuid'] == node_id:
+            return node
+    return None
+
+
 def count_objects_by_name(nodes, object_name):
     cnt = 0
     for node in nodes:
