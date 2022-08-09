@@ -1,6 +1,46 @@
 import json
 import os
 
+KEY_TO_DIR = {
+    'scenes': 'scenes',
+    'scripts': 'scripts',
+    'cameras': 'cameras',
+    'meshes': 'meshes',
+    'skinControllers': 'skin-controllers',
+    'materials': 'materials',
+    'textures2d': 'textures/2D',
+    'texturesCube': 'textures/cube',
+    'images': 'images',
+    'lights': 'lights',
+    'animations': 'animations',
+    'audioSources': 'audio-sources',
+    'soundSamples': 'sounds',
+    'rigidBodies': 'rigid-bodies',
+    'colliders': 'colliders',
+    'characters': 'characters',
+    'stateMachines': 'state-machines',
+}
+
+DIR_TO_KEY = {
+    'scenes': 'scenes',
+    'scripts': 'scripts',
+    'cameras': 'cameras',
+    'meshes': 'meshes',
+    'skin-controllers': 'skinControllers',
+    'materials': 'materials',
+    'textures/2D': 'textures2d',
+    'textures/cube': 'texturesCube',
+    'images': 'images',
+    'lights': 'lights',
+    'animations': 'animations',
+    'audio-sources': 'audioSources',
+    'sounds': 'soundSamples',
+    'rigid-bodies': 'rigidBodies',
+    'colliders': 'colliders',
+    'characters': 'characters',
+    'state-machines': 'stateMachines',
+}
+
 
 def get_resource_pack_data(game_project_dir_path):
     resource_pack_file_path = os.path.join(game_project_dir_path, 'resource-pack.json')
