@@ -87,6 +87,15 @@ def get_scene_data(game_project_dir_path, scene_id):
     return scene_data
 
 
+def count_objects_by_name(nodes, object_name):
+    cnt = 0
+    for node in nodes:
+        obj = node['object3D']
+        if obj['name'] == object_name:
+            cnt += 1
+    return cnt
+
+
 def find_object_id_by_name(nodes, object_name):
     for node in nodes:
         obj = node['object3D']
