@@ -162,6 +162,19 @@ def get_inserted_timelines_ids_from_animation_data(animation_data):
     return inserted_timelines_ids
 
 
+def get_animations_ids_who_contains_timeline(game_project_dir, timeline_node_id):
+    animations_ids_who_contains_timeline = []
+    resource_pack_data = get_resource_pack_data(game_project_dir)
+    animations_ids = resource_pack_data['animations']['map']
+    for key_value in animations_ids:
+        animation_id = key_value['key']['uuid']
+        animation_data = get_animation_data(game_project_dir, animation_id)
+        inserted_timelines_ids = get_inserted_timelines_ids_from_animation_data(animation_data)
+        if timeline_node_id in inserted_timelines_ids:
+            animations_ids_who_contains_timeline.append(animation_id)
+    return animations_ids_who_contains_timeline
+
+
 def find_camera_follow_script_id(scripts):
     for script in scripts:
         if script['@class'] == 'CameraFollowScript':
