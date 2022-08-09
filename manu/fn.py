@@ -9,6 +9,10 @@ def get_resource_pack_data(game_project_dir_path):
     return resource_pack_data
 
 
+def get_first_scene_id_from_resource_pack_data(resource_pack_data):
+    return resource_pack_data['scenes']['map'][0]['value']['id']['uuid']
+
+
 def get_scene_data(game_project_dir_path, scene_id):
     scene_file_path = os.path.join(game_project_dir_path, 'scenes/{0}.json'.format(scene_id))
     with open(scene_file_path, 'r') as scene_file:
