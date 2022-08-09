@@ -83,6 +83,14 @@ def get_scene_data(game_project_dir_path, scene_id):
     return scene_data
 
 
+def find_object_id_by_name(nodes, object_name):
+    for node in nodes:
+        obj = node['object3D']
+        if obj['name'] == object_name:
+            return obj['id']['uuid']
+    return '00000000-0000-0000-0000-000000000000'
+
+
 def get_character_data(game_project_dir_path, character_id=None):
     if character_id is None:
         resource_pack_data = get_resource_pack_data(game_project_dir_path)
