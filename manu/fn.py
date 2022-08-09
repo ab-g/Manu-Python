@@ -108,6 +108,33 @@ def find_object_id_by_name(nodes, object_name):
     return '00000000-0000-0000-0000-000000000000'
 
 
+def find_object_id_by_name_in_resource_pack(game_project_dir_path, object_name):
+    resource_pack_data = get_resource_pack_data(game_project_dir_path)
+    nodes_list = []
+
+    if 'scenes' in resource_pack_data['scenes']['map']:
+        for key_value in resource_pack_data['scenes']['map']:
+            scene_id = key_value['key']['uuid']
+            scene_data = get_scene_data(game_project_dir_path, scene_id)
+            scene_nodes = scene_data['nodes']
+            nodes_list.append(nodes_list)
+
+    if 'characters' in resource_pack_data['characters']['map']:
+        for key_value in resource_pack_data['characters']['map']:
+            character_id = key_value['key']['uuid']
+            character_data = get_character_data(game_project_dir_path, character_id)
+            character_nodes = character_data['body']
+            nodes_list.append(character_nodes)
+
+    for nodes in nodes_list:
+        for node in nodes:
+            obj = node['object3D']
+            if obj['name'] == object_name:
+                return obj['id']['uuid']
+
+    return '00000000-0000-0000-0000-000000000000'
+
+
 def get_human_readable_path_to_node_by_id(nodes, node_id):
     path_to_node = None
     path_to_node_stack = []
