@@ -110,7 +110,7 @@ def find_object_id_by_name(nodes, object_name):
     return '00000000-0000-0000-0000-000000000000'
 
 
-def find_object_id_by_name_in_resource_pack(game_project_dir_path, object_name):
+def get_all_nodes_collections_list(game_project_dir_path):
     resource_pack_data = get_resource_pack_data(game_project_dir_path)
     nodes_list = []
 
@@ -127,6 +127,12 @@ def find_object_id_by_name_in_resource_pack(game_project_dir_path, object_name):
             character_data = get_character_data(game_project_dir_path, character_id)
             character_nodes = character_data['body']
             nodes_list.append(character_nodes)
+
+    return nodes_list
+
+
+def find_object_id_by_name_in_resource_pack(game_project_dir_path, object_name):
+    nodes_list = get_all_nodes_collections_list(game_project_dir_path)
 
     for nodes in nodes_list:
         node_id = find_object_id_by_name(nodes, object_name)
@@ -163,6 +169,16 @@ def get_human_readable_path_to_node_by_id(nodes, node_id):
         if len(path_to_node_stack) > 0:
             path_to_node += ' / '
 
+    return path_to_node
+
+
+def find_in_resource_pack_human_readable_path_to_node_by_id(game_project_dir_path, node_id):
+    path_to_node = None
+    nodes_list = get_all_nodes_collections_list(game_project_dir_path)
+    for nodes in nodes_list:
+        path_to_node = get_human_readable_path_to_node_by_id(nodes, node_id)
+        if path_to_node:
+            break
     return path_to_node
 
 
