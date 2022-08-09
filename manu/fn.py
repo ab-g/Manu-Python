@@ -264,6 +264,23 @@ def find_timelines_nodes_ids_who_inserts_timeline(game_project_dir, scene_id, ti
     return timelines_nodes_ids
 
 
+def find_timelines_nodes_ids_who_animate_node(game_project_dir_path, node_id):
+    timelines_nodes_ids = []
+    scenes_data = get_all_scenes(game_project_dir_path)
+    for scene_data in scenes_data:
+        for timeline_script in scene_data['scriptSystem']['scripts']:
+            if timeline_script['@class'] == 'TimeLineScript':
+                timeline_script_id = timeline_script['id']['uuid']
+                timeline_script_data = get_script_data(game_project_dir_path, timeline_script_id)
+                for animation_script in timeline_script_data['scripts']['list']:
+                    if animation_script['AnimationType'] == 'object3D':
+                        object_id = get_target_id_from_binding_link(animation_script['OwnerLink'])
+                        if object_id == node_id:
+                            nodes_ids = find_in_resource_pack_nodes_ids_by_timeline_script_id(game_project_dir_path, timeline_script_id)
+                            timelines_nodes_ids.extend(nodes_ids)
+    return timelines_nodes_ids
+
+
 def find_camera_follow_script_id(scripts):
     for script in scripts:
         if script['@class'] == 'CameraFollowScript':
