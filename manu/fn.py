@@ -149,6 +149,9 @@ def get_human_readable_path_to_node_by_id(nodes, node_id):
     current_node_id = node_id
 
     node = find_node_by_id(nodes, current_node_id)
+    if not node:
+        return path_to_node
+
     path_to_node_stack.append(node['object3D']['name'])
 
     while current_node_id:
