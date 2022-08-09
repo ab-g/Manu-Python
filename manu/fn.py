@@ -112,6 +112,12 @@ def get_character_data(game_project_dir_path, character_id=None):
     return character_data
 
 
+def get_state_data_by_id_from_state_machine_data(state_machine_data, state_id):
+    for state_machine_state in state_machine_data['states']:
+        if state_machine_state['id']['uuid'] == state_id:
+            return state_machine_state
+
+
 def get_file_path_to_attachment_by_asset_path(path_to_asset):
     with open(path_to_asset, 'r') as asset_file:
         asset_data = json.load(asset_file)
