@@ -4,11 +4,11 @@ from distutils.core import setup
 setup(
   name='manu',
   packages=['manu'],
-  version='0.26.2',
+  version='0.26.3',
   description='Video Game Software',
   license='MIT',
   url='https://github.com/ab-g/Manu-Python',
-  download_url='https://github.com/ab-g/Manu-Python/archive/v0.26.2.tar.gz',
+  download_url='https://github.com/ab-g/Manu-Python/archive/v0.26.3.tar.gz',
   keywords='games',
   classifiers=['Topic :: Games/Entertainment']
 )

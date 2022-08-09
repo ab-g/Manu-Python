@@ -1,5 +1,4 @@
-import get_asset_data
-from get_asset_data import *
+from .get_asset_data import *
 
 KEY_TO_DIR = {
     'scenes': 'scenes',
